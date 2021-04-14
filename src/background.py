@@ -1,4 +1,4 @@
-from .trigger import Trigger
+from .trigger import Trigger, TriggerTime
 
 class Background:
     """"""
@@ -15,6 +15,7 @@ class Background:
         if self.index >= self.len:
             self.index = 0
         self.image = self.images[self.index]
+        self.scene.trigger(TriggerTime(TriggerTime.Event.Background, self.index))
 
     def next_bg_wait(self):
         pass
@@ -23,7 +24,3 @@ class Background:
         self.index = index
         self.image = self.images[self.index]
 
-    def when(self, trigger_time):
-        trigger = Trigger(trigger_time)
-        self.triggers.append((trigger_time, trigger))
-        return trigger

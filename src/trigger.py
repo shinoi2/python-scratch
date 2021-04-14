@@ -10,9 +10,20 @@ class TriggerTime:
         Background = 4
         Volume = 5
         Message = 6
+        Clone = 7
 
-    def __init__(self, event):
-        pass
+    def __init__(self, event, key=""):
+        self.event = event
+        self.key = key
+
+    def __hash__(self):
+        return hash(str(self.event) + str(self.key))
+    
+    def __eq__(self, other):
+        return self.event == other.event and self.key == other.key
+
+    def __ne__(self, other):
+        return self.event != other.event or self.key != other.key
 
 
 class Trigger:
